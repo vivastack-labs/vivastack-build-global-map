@@ -1,0 +1,20 @@
+# A custom config replaces gitleaks' built-in rules unless they are extended.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Exclude build outputs, dependencies, hook logs, and well-known fake test keys"
+# The hook scans with `--source .` from the project root, so paths are
+# root-relative: ^-anchored entries match only the project's own top-level
+# dirs, not same-named nested dirs or ancestor dirs of the clone.
+paths = [
+  '''^\.next/''',
+  '''^out/''',
+  '''^dist/''',
+  '''^coverage/''',
+  '''(^|/)node_modules/''',
+  '''^\.claude/hooks/logs/''',
+]
+regexes = [
+  '''AKIAIOSFODNN7EXAMPLE''',
+]

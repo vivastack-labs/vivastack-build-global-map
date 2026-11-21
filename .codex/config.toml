@@ -1,0 +1,123 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+# 信頼済みのプロジェクトで読み込まれる。利用前に /hooks で hooks.json を確認・信頼する。
+
+# 通常の作業には Sol を使い、推論レベルはクライアントの既定値に委ねる。
+# https://learn.chatgpt.com/guides/best-practices#strong-first-use-context-and-prompts
+model = "gpt-6.2-sol"
+
+# トークン最適化
+model_reasoning_effort = "medium"
+plan_mode_reasoning_effort = "high"
+
+# 使用可能なコンテキストの50%に達したら、応答終了後に履歴を圧縮する。
+# https://learn.chatgpt.com/docs/config-file/config-reference
+model_post_turn_compact_threshold_percent = 50
+
+# ワークスペース内で編集し、サンドボックス外での実行は必要に応じて承認する。
+# https://learn.chatgpt.com/docs/agent-approvals-security#common-sandbox-and-approval-combinations
+# never, on-request, granular
+approval_policy = "on-request"
+# approval_policy = "never"
+# approvals_reviewer = "auto_review"
+sandbox_mode = "workspace-write"
+
+# シェルの外部通信を既定で制限する。
+# https://learn.chatgpt.com/docs/agent-approvals-security#network-access
+[sandbox_workspace_write]
+network_access = true
+
+# サブエージェントは同時に2つまで。Luna の推論レベルは公式ガイドの初期推奨に合わせる。
+# https://learn.chatgpt.com/guides/best-practices#strong-first-use-context-and-prompts
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 2
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "high"
+
+# プロジェクトのカスタムエージェント。説明とモデルは各 TOML に置く。
+[agents.architect]
+config_file = "./agents/architect.toml"
+
+[agents.build-error-resolver]
+config_file = "./agents/build-error-resolver.toml"
+
+[agents.code-architect]
+config_file = "./agents/code-architect.toml"
+
+[agents.code-explorer]
+config_file = "./agents/code-explorer.toml"
+
+[agents.code-reviewer]
+config_file = "./agents/code-reviewer.toml"
+
+[agents.code-simplifier]
+config_file = "./agents/code-simplifier.toml"
+
+[agents.comment-analyzer]
+config_file = "./agents/comment-analyzer.toml"
+
+[agents.e2e-runner]
+config_file = "./agents/e2e-runner.toml"
+
+[agents.gan-evaluator]
+config_file = "./agents/gan-evaluator.toml"
+
+[agents.gan-generator]
+config_file = "./agents/gan-generator.toml"
+
+[agents.gan-planner]
+config_file = "./agents/gan-planner.toml"
+
+[agents.java-reviewer]
+config_file = "./agents/java-reviewer.toml"
+
+[agents.planner]
+config_file = "./agents/planner.toml"
+
+[agents.pr-test-analyzer]
+config_file = "./agents/pr-test-analyzer.toml"
+
+[agents.python-reviewer]
+config_file = "./agents/python-reviewer.toml"
+
+[agents.react-build-resolver]
+config_file = "./agents/react-build-resolver.toml"
+
+[agents.react-reviewer]
+config_file = "./agents/react-reviewer.toml"
+
+[agents.refactor-cleaner]
+config_file = "./agents/refactor-cleaner.toml"
+
+[agents.rust-reviewer]
+config_file = "./agents/rust-reviewer.toml"
+
+[agents.security-reviewer]
+config_file = "./agents/security-reviewer.toml"
+
+[agents.silent-failure-hunter]
+config_file = "./agents/silent-failure-hunter.toml"
+
+[agents.tdd-guide]
+config_file = "./agents/tdd-guide.toml"
+
+[agents.type-design-analyzer]
+config_file = "./agents/type-design-analyzer.toml"
+
+[agents.typescript-reviewer]
+config_file = "./agents/typescript-reviewer.toml"
+
+# Claude Code 側の .mcp.json と同じ補助ツール。バージョン変更時は両方を揃える。
+# 認証情報は記載しない。
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp@2.1.8"]
+startup_timeout_sec = 60
+
+[mcp_servers.deepwiki]
+command = "npx"
+args = ["-y", "deepwiki-mcp@0.0.6"]
+startup_timeout_sec = 60
+
+[mcp_servers.deepwiki.tools.get-deepwiki-index]
+approval_mode = "approve"
