@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>GitHub - mledoze/countries: World countries in JSON, YAML, CSV and XML. Any help is welcome! · GitHub</title>
+<style>
+body { max-width: 52rem; margin: 2rem auto; padding: 0 1rem; color: #263b45; background: #f5f9fb; font: 1rem/1.65 system-ui, sans-serif; }
+h1 { line-height: 1.3; }
+a { color: #225d80; }
+img { max-width: 100%; max-height: 16rem; object-fit: contain; }
+.source { overflow-wrap: anywhere; }
+table { border-collapse: collapse; }
+th, td { padding: .3rem .5rem; border: 1px solid #dce7ec; }
+</style>
+</head>
+<body>
+<p><a href="../world-atlas.html">世界地図へ戻る</a></p>
+<main>
+<h1>GitHub - mledoze/countries: World countries in JSON, YAML, CSV and XML. Any help is welcome! · GitHub</h1>
+<p>本文の保存版（2026-11-22）</p>
+<p class="source">出典URL：https://github.com/mledoze/countries</p>
+<div><div><h2>World countries in JSON, CSV, XML and YAML.</h2></div>
+
+<p><span>License</span>
+<span>Build Status</span></p>
+
+<p><span>Latest Stable Version</span>
+<span>npm downloads</span></p>
+
+<p><span>Latest Stable Version</span>
+<span>PHP from Packagist</span>
+<span>Packagist downloads</span></p>
+
+<div><h2>Countries data</h2></div>
+
+<p>This repository contains a list of world countries, as defined by ISO Standard 3166-1,
+in JSON, CSV, XML and YAML. <strong>Warning:</strong>
+ not all entities in this project are independent countries; refer to the <code>independent</code>
+ property to know if the country is considered a sovereign state.</p>
+
+<p>Each line contains the country:</p>
+
+<ul><li><code>name</code>
+
+<ul><li><code>common</code>
+ - common name in english</li>
+
+<li><code>official</code>
+ - official name in english</li>
+
+<li><code>native</code>
+ - list of all native names
+<ul><li>key: three-letter ISO 639-3 language code</li>
+
+<li>value: name object
+<ul><li>key: <code>official</code>
+ - official name translation</li>
+
+<li>key: <code>common</code>
+ - common name translation</li></ul></li></ul></li></ul></li>
+
+<li>country code top-level domain (<code>tld</code>
+)</li>
+
+<li>code ISO 3166-1 alpha-2 (<code>cca2</code>
+)</li>
+
+<li>code ISO 3166-1 numeric (<code>ccn3</code>
+)</li>
+
+<li>code ISO 3166-1 alpha-3 (<code>cca3</code>
+)</li>
+
+<li>code International Olympic Committee (<code>cioc</code>
+)</li>
+
+<li>ISO 3166-1 independence status (<code>independent</code>
+) (denotes the country is considered a sovereign state)</li>
+
+<li>ISO 3166-1 assignment status (<code>status</code>
+)</li>
+
+<li>UN Member status (<code>unMember</code>
+)</li>
+
+<li>UN Regional Group (<code>unRegionalGroup</code>
+)</li>
+
+<li><code>currencies</code>
+ - list of all currencies
+<ul><li>key: ISO 4217 currency code</li>
+
+<li>value: currency object
+<ul><li>key: <code>name</code>
+ name of the currency</li>
+
+<li>key: <code>symbol</code>
+ symbol of the currency</li></ul></li></ul></li>
+
+<li>International Direct Dialing info (<code>idd</code>
+)
+<ul><li><code>root</code>
+ - the root geographical code prefix. e.g. +6 for New Zealand, +4 for UK.</li>
+
+<li><code>suffixes</code>
+ - list of all suffixes assigned to this country. 4 for NZ, 809, 829, and 849 for Dominican Republic.</li></ul></li>
+
+<li>capital city(ies) (<code>capital</code>
+)</li>
+
+<li>alternative spellings (<code>altSpellings</code>
+)</li>
+
+<li>region</li>
+
+<li>subregion</li>
+
+<li>list of official languages (<code>languages</code>
+)
+<ul><li>key: three-letter ISO 639-3 language code</li>
+
+<li>value: name of the language in english</li></ul></li>
+
+<li>list of name translations (<code>translations</code>
+)
+<ul><li>key: three-letter ISO 639-3 language code</li>
+
+<li>value: name object
+<ul><li>key: official - official name translation</li>
+
+<li>key: common - common name translation</li></ul></li></ul></li>
+
+<li>latitude and longitude (<code>latlng</code>
+)</li>
+
+<li><code>demonyms</code>
+ - name of residents, translated &amp; genderized
+<ul><li>key: three-letter ISO 639-3 language code</li>
+
+<li>value: genderized demonym object
+<ul><li>key: <code>f</code>
+ (female) or <code>m</code>
+ (male)</li>
+
+<li>value: genderized demonym translation</li></ul></li></ul></li>
+
+<li>landlocked status (<code>landlocked</code>
+)</li>
+
+<li>land borders (<code>borders</code>
+)</li>
+
+<li>land area in km² (<code>area</code>
+)</li>
+
+<li>emoji flag (<code>flag</code>
+)</li>
+
+<li>calling codes (<code>callingCodes</code>
+)</li></ul>
+
+<div><h4>Additional data</h4></div>
+
+<p>The data folder contains additional data such as the countries
+GeoJSON outlines and flags in SVG format.</p>
+
+<div><h2>Examples</h2></div>
+
+<div><h3>JSON</h3></div>
+
+<div><pre>{
+	&quot;name&quot;: {
+		&quot;common&quot;: &quot;Austria&quot;,
+		&quot;official&quot;: &quot;Republic of Austria&quot;,
+		&quot;native&quot;: {
+			&quot;bar&quot;: {
+				&quot;official&quot;: &quot;Republik Österreich&quot;,
+				&quot;common&quot;: &quot;Österreich&quot;
+			}
+		}
+	},
+	&quot;tld&quot;: [&quot;.at&quot;],
+	&quot;cca2&quot;: &quot;AT&quot;,
+	&quot;ccn3&quot;: &quot;040&quot;,
+	&quot;cca3&quot;: &quot;AUT&quot;,
+	&quot;cioc&quot;: &quot;AUT&quot;,
+	&quot;independent&quot;: true,
+	&quot;status&quot;: &quot;officially-assigned&quot;,
+	&quot;unMember&quot;: true,
+	&quot;unRegionalGroup&quot;: &quot;Western European and Others Group&quot;,
+	&quot;currencies&quot;: {&quot;EUR&quot;: {&quot;name&quot;: &quot;Euro&quot;, &quot;symbol&quot;: &quot;\u20ac&quot;}},
+	&quot;idd&quot;: {
+		&quot;root&quot;: &quot;+4&quot;,
+		&quot;suffixes&quot;: [&quot;3&quot;]
+	},
+	&quot;capital&quot;: [&quot;Vienna&quot;],
+	&quot;altSpellings&quot;: [&quot;AT&quot;, &quot;Osterreich&quot;, &quot;Oesterreich&quot;],
+	&quot;region&quot;: &quot;Europe&quot;,
+	&quot;subregion&quot;: &quot;Western Europe&quot;,
+	&quot;languages&quot;: {
+		&quot;bar&quot;: &quot;Austro-Bavarian German&quot;
+	},
+	&quot;translations&quot;: {
+		&quot;cym&quot;: {&quot;official&quot;: &quot;Republic of Austria&quot;, &quot;common&quot;: &quot;Awstria&quot;},
+		&quot;deu&quot;: {&quot;official&quot;: &quot;Republik Österreich&quot;, &quot;common&quot;: &quot;Österreich&quot;},
+		&quot;fra&quot;: {&quot;official&quot;: &quot;République d&#x27;Autriche&quot;, &quot;common&quot;: &quot;Autriche&quot;},
+		&quot;hrv&quot;: {&quot;official&quot;: &quot;Republika Austrija&quot;, &quot;common&quot;: &quot;Austrija&quot;},
+		&quot;ita&quot;: {&quot;official&quot;: &quot;Repubblica d&#x27;Austria&quot;, &quot;common&quot;: &quot;Austria&quot;},
+		&quot;jpn&quot;: {&quot;official&quot;: &quot;オーストリア共和国&quot;, &quot;common&quot;: &quot;オーストリア&quot;},
+		&quot;nld&quot;: {&quot;official&quot;: &quot;Republiek Oostenrijk&quot;, &quot;common&quot;: &quot;Oostenrijk&quot;},
+		&quot;por&quot;: {&quot;official&quot;: &quot;República da Áustria&quot;, &quot;common&quot;: &quot;Áustria&quot;},
+		&quot;rus&quot;: {&quot;official&quot;: &quot;Австрийская Республика&quot;, &quot;common&quot;: &quot;Австрия&quot;},
+		&quot;spa&quot;: {&quot;official&quot;: &quot;República de Austria&quot;, &quot;common&quot;: &quot;Austria&quot;}
+	},
+	&quot;latlng&quot;: [47.33333333, 13.33333333],
+	&quot;demonyms&quot;: {
+		&quot;fra&quot;: {
+			&quot;f&quot;: &quot;Autrichienne&quot;,
+			&quot;m&quot;: &quot;Autrichien&quot;
+		},
+		&quot;spa&quot;: {
+			&quot;f&quot;: &quot;Austriaco&quot;,
+			&quot;m&quot;: &quot;Austriaca&quot;
+		}
+	},
+	&quot;landlocked&quot;: true,
+	&quot;borders&quot;: [&quot;CZE&quot;, &quot;DEU&quot;, &quot;HUN&quot;, &quot;ITA&quot;, &quot;LIE&quot;, &quot;SVK&quot;, &quot;SVN&quot;, &quot;CHE&quot;],
+	&quot;area&quot;: 83871,
+	&quot;callingCodes&quot;: [&quot;+43&quot;]
+	&quot;flag&quot;: &quot;\ud83c\udde6\ud83c\uddf9&quot;
+}</pre></div>
+
+<div><h3>GeoJSON and TopoJSON outlines</h3></div>
+
+<p>See an example for Germany: GeoJSON or TopoJSON.</p>
+
+<div><h3>CSV</h3></div>
+
+<div><pre>&quot;name.common&quot;,&quot;name.official&quot;,&quot;tld&quot;,&quot;cca2&quot;,&quot;ccn3&quot;,&quot;cca3&quot;,&quot;cioc&quot;,&quot;independent&quot;,&quot;status&quot;,&quot;unMember&quot;,&quot;currencies&quot;,&quot;idd.root&quot;,&quot;idd.suffixes&quot;,&quot;capital&quot;,&quot;altSpellings&quot;,&quot;region&quot;,&quot;subregion&quot;,&quot;languages&quot;,&quot;translations.ces.official&quot;,&quot;translations.ces.common&quot;,&quot;translations.deu.official&quot;,&quot;translations.deu.common&quot;,&quot;translations.est.official&quot;,&quot;translations.est.common&quot;,&quot;translations.fin.official&quot;,&quot;translations.fin.common&quot;,&quot;translations.fra.official&quot;,&quot;translations.fra.common&quot;,&quot;translations.hrv.official&quot;,&quot;translations.hrv.common&quot;,&quot;translations.hun.official&quot;,&quot;translations.hun.common&quot;,&quot;translations.ita.official&quot;,&quot;translations.ita.common&quot;,&quot;translations.jpn.official&quot;,&quot;translations.jpn.common&quot;,&quot;translations.kor.official&quot;,&quot;translations.kor.common&quot;,&quot;translations.nld.official&quot;,&quot;translations.nld.common&quot;,&quot;translations.per.official&quot;,&quot;translations.per.common&quot;,&quot;translations.pol.official&quot;,&quot;translations.pol.common&quot;,&quot;translations.por.official&quot;,&quot;translations.por.common&quot;,&quot;translations.rus.official&quot;,&quot;translations.rus.common&quot;,&quot;translations.slk.official&quot;,&quot;translations.slk.common&quot;,&quot;translations.spa.official&quot;,&quot;translations.spa.common&quot;,&quot;translations.swe.official&quot;,&quot;translations.swe.common&quot;,&quot;translations.urd.official&quot;,&quot;translations.urd.common&quot;,&quot;translations.zho.official&quot;,&quot;translations.zho.common&quot;,&quot;latlng&quot;,&quot;landlocked&quot;,&quot;borders&quot;,&quot;area&quot;,&quot;flag&quot;,&quot;demonyms.eng.f&quot;,&quot;demonyms.eng.m&quot;,&quot;demonyms.fra.f&quot;,&quot;demonyms.fra.m&quot;,&quot;callingCodes&quot;
+&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;.aw&quot;,&quot;AW&quot;,&quot;533&quot;,&quot;ABW&quot;,&quot;ARU&quot;,&quot;0&quot;,&quot;officially-assigned&quot;,&quot;0&quot;,&quot;AWG&quot;,&quot;+2&quot;,&quot;97&quot;,&quot;Oranjestad&quot;,&quot;AW&quot;,&quot;Americas&quot;,&quot;Caribbean&quot;,&quot;Dutch,Papiamento&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;アルバ&quot;,&quot;アルバ&quot;,&quot;아루바&quot;,&quot;아루바&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;آروبا&quot;,&quot;آروبا&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Аруба&quot;,&quot;Аруба&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;Aruba&quot;,&quot;اروبا&quot;,&quot;اروبا&quot;,&quot;阿鲁巴&quot;,&quot;阿鲁巴&quot;,&quot;12.5,-69.96666666&quot;,&quot;0&quot;,&quot;&quot;,&quot;180&quot;,&quot;🇦🇼&quot;,&quot;Aruban&quot;,&quot;Aruban&quot;,&quot;Arubaise&quot;,&quot;Arubais&quot;,&quot;+297&quot;
+&quot;Afghanistan&quot;,&quot;Islamic Republic of Afghanistan&quot;,&quot;.af&quot;,&quot;AF&quot;,&quot;004&quot;,&quot;AFG&quot;,&quot;AFG&quot;,&quot;1&quot;,&quot;officially-assigned&quot;,&quot;1&quot;,&quot;AFN&quot;,&quot;+9&quot;,&quot;3&quot;,&quot;Kabul&quot;,&quot;AF,Afġānistān&quot;,&quot;Asia&quot;,&quot;Southern Asia&quot;,&quot;Dari,Pashto,Turkmen&quot;,&quot;Afghánská islámská republika&quot;,&quot;Afghánistán&quot;,&quot;Islamische Republik Afghanistan&quot;,&quot;Afghanistan&quot;,&quot;Afganistani Islamivabariik&quot;,&quot;Afganistan&quot;,&quot;Afganistanin islamilainen tasavalta&quot;,&quot;Afganistan&quot;,&quot;République islamique d&#x27;Afghanistan&quot;,&quot;Afghanistan&quot;,&quot;Islamska Republika Afganistan&quot;,&quot;Afganistan&quot;,&quot;Afganisztáni Iszlám Köztársaság&quot;,&quot;Afganisztán&quot;,&quot;Repubblica islamica dell&#x27;Afghanistan&quot;,&quot;Afghanistan&quot;,&quot;アフガニスタン・イスラム共和国&quot;,&quot;アフガニスタン&quot;,&quot;아프가니스탄 이슬람 공화국&quot;,&quot;아프가니스탄&quot;,&quot;Islamitische Republiek Afghanistan&quot;,&quot;Afghanistan&quot;,&quot;جمهوری اسلامی افغانستان&quot;,&quot;افغانستان&quot;,&quot;Islamska Republika Afganistanu&quot;,&quot;Afganistan&quot;,&quot;República Islâmica do Afeganistão&quot;,&quot;Afeganistão&quot;,&quot;Исламская Республика Афганистан&quot;,&quot;Афганистан&quot;,&quot;Afgánsky islamský štát&quot;,&quot;Afganistan&quot;,&quot;República Islámica de Afganistán&quot;,&quot;Afganistán&quot;,&quot;Islamiska republiken Afghanistan&quot;,&quot;Afghanistan&quot;,&quot;اسلامی جمہوریہ افغانستان&quot;,&quot;افغانستان&quot;,&quot;阿富汗伊斯兰共和国&quot;,&quot;阿富汗&quot;,&quot;33,65&quot;,&quot;1&quot;,&quot;IRN,PAK,TKM,UZB,TJK,CHN&quot;,&quot;652230&quot;,&quot;🇦🇫&quot;,&quot;Afghan&quot;,&quot;Afghan&quot;,&quot;Afghane&quot;,&quot;Afghan&quot;,&quot;+93&quot;
+&quot;Angola&quot;,&quot;Republic of Angola&quot;,&quot;.ao&quot;,&quot;AO&quot;,&quot;024&quot;,&quot;AGO&quot;,&quot;ANG&quot;,&quot;1&quot;,&quot;officially-assigned&quot;,&quot;1&quot;,&quot;AOA&quot;,&quot;+2&quot;,&quot;44&quot;,&quot;Luanda&quot;,&quot;AO,República de Angola,ʁɛpublika de an&#x27;ɡɔla&quot;,&quot;Africa&quot;,&quot;Middle Africa&quot;,&quot;Portuguese&quot;,&quot;Angolská republika&quot;,&quot;Angola&quot;,&quot;Republik Angola&quot;,&quot;Angola&quot;,&quot;Angola Vabariik&quot;,&quot;Angola&quot;,&quot;Angolan tasavalta&quot;,&quot;Angola&quot;,&quot;République d&#x27;Angola&quot;,&quot;Angola&quot;,&quot;Republika Angola&quot;,&quot;Angola&quot;,&quot;Angola&quot;,&quot;Angola&quot;,&quot;Repubblica dell&#x27;Angola&quot;,&quot;Angola&quot;,&quot;アンゴラ共和国&quot;,&quot;アンゴラ&quot;,&quot;앙골라 공화국&quot;,&quot;앙골라&quot;,&quot;Republiek Angola&quot;,&quot;Angola&quot;,&quot;جمهوری آنگولا&quot;,&quot;آنگولا&quot;,&quot;Republika Angoli&quot;,&quot;Angola&quot;,&quot;República de Angola&quot;,&quot;Angola&quot;,&quot;Республика Ангола&quot;,&quot;Ангола&quot;,&quot;Angolská republika&quot;,&quot;Angola&quot;,&quot;República de Angola&quot;,&quot;Angola&quot;,&quot;Republiken Angola&quot;,&quot;Angola&quot;,&quot;جمہوریہ انگولہ&quot;,&quot;انگولہ&quot;,&quot;安哥拉共和国&quot;,&quot;安哥拉&quot;,&quot;-12.5,18.5&quot;,&quot;0&quot;,&quot;COG,COD,ZMB,NAM&quot;,&quot;1246700&quot;,&quot;🇦🇴&quot;,&quot;Angolan&quot;,&quot;Angolan&quot;,&quot;Angolaise&quot;,&quot;Angolais&quot;,&quot;+244&quot;
+⋮</pre></div>
+
+<div><h3>XML</h3></div>
+
+<div><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;countries&gt;
+  &lt;country name.common=&quot;Aruba&quot; name.official=&quot;Aruba&quot; name.native.nld.official=&quot;Aruba&quot; name.native.nld.common=&quot;Aruba&quot; name.native.pap.official=&quot;Aruba&quot; name.native.pap.common=&quot;Aruba&quot; tld=&quot;.aw&quot; cca2=&quot;AW&quot; ccn3=&quot;533&quot; cca3=&quot;ABW&quot; cioc=&quot;ARU&quot; independent=&quot;0&quot; status=&quot;officially-assigned&quot; unMember=&quot;0&quot; currencies.AWG.name=&quot;Aruban florin&quot; currencies.AWG.symbol=&quot;ƒ&quot; idd.root=&quot;+2&quot; idd.suffixes=&quot;97&quot; capital=&quot;Oranjestad&quot; altSpellings=&quot;AW&quot; region=&quot;Americas&quot; subregion=&quot;Caribbean&quot; languages.nld=&quot;Dutch&quot; languages.pap=&quot;Papiamento&quot; translations.ces.official=&quot;Aruba&quot; translations.ces.common=&quot;Aruba&quot; translations.deu.official=&quot;Aruba&quot; translations.deu.common=&quot;Aruba&quot; translations.est.official=&quot;Aruba&quot; translations.est.common=&quot;Aruba&quot; translations.fin.official=&quot;Aruba&quot; translations.fin.common=&quot;Aruba&quot; translations.fra.official=&quot;Aruba&quot; translations.fra.common=&quot;Aruba&quot; translations.hrv.official=&quot;Aruba&quot; translations.hrv.common=&quot;Aruba&quot; translations.hun.official=&quot;Aruba&quot; translations.hun.common=&quot;Aruba&quot; translations.ita.official=&quot;Aruba&quot; translations.ita.common=&quot;Aruba&quot; translations.jpn.official=&quot;アルバ&quot; translations.jpn.common=&quot;アルバ&quot; translations.kor.official=&quot;아루바&quot; translations.kor.common=&quot;아루바&quot; translations.nld.official=&quot;Aruba&quot; translations.nld.common=&quot;Aruba&quot; translations.per.official=&quot;آروبا&quot; translations.per.common=&quot;آروبا&quot; translations.pol.official=&quot;Aruba&quot; translations.pol.common=&quot;Aruba&quot; translations.por.official=&quot;Aruba&quot; translations.por.common=&quot;Aruba&quot; translations.rus.official=&quot;Аруба&quot; translations.rus.common=&quot;Аруба&quot; translations.slk.official=&quot;Aruba&quot; translations.slk.common=&quot;Aruba&quot; translations.spa.official=&quot;Aruba&quot; translations.spa.common=&quot;Aruba&quot; translations.swe.official=&quot;Aruba&quot; translations.swe.common=&quot;Aruba&quot; translations.urd.official=&quot;اروبا&quot; translations.urd.common=&quot;اروبا&quot; translations.zho.official=&quot;阿鲁巴&quot; translations.zho.common=&quot;阿鲁巴&quot; latlng=&quot;12.5,-69.96666666&quot; landlocked=&quot;0&quot; borders=&quot;&quot; area=&quot;180&quot; flag=&quot;🇦🇼&quot; demonyms.eng.f=&quot;Aruban&quot; demonyms.eng.m=&quot;Aruban&quot; demonyms.fra.f=&quot;Arubaise&quot; demonyms.fra.m=&quot;Arubais&quot; callingCodes=&quot;+297&quot;/&gt;
+  &lt;country name.common=&quot;Afghanistan&quot; name.official=&quot;Islamic Republic of Afghanistan&quot; name.native.prs.official=&quot;جمهوری اسلامی افغانستان&quot; name.native.prs.common=&quot;افغانستان&quot; name.native.pus.official=&quot;د افغانستان اسلامي جمهوریت&quot; name.native.pus.common=&quot;افغانستان&quot; name.native.tuk.official=&quot;Owganystan Yslam Respublikasy&quot; name.native.tuk.common=&quot;Owganystan&quot; tld=&quot;.af&quot; cca2=&quot;AF&quot; ccn3=&quot;004&quot; cca3=&quot;AFG&quot; cioc=&quot;AFG&quot; independent=&quot;1&quot; status=&quot;officially-assigned&quot; unMember=&quot;1&quot; currencies.AFN.name=&quot;Afghan afghani&quot; currencies.AFN.symbol=&quot;؋&quot; idd.root=&quot;+9&quot; idd.suffixes=&quot;3&quot; capital=&quot;Kabul&quot; altSpellings=&quot;AF,Afġānistān&quot; region=&quot;Asia&quot; subregion=&quot;Southern Asia&quot; languages.prs=&quot;Dari&quot; languages.pus=&quot;Pashto&quot; languages.tuk=&quot;Turkmen&quot; translations.ces.official=&quot;Afghánská islámská republika&quot; translations.ces.common=&quot;Afghánistán&quot; translations.deu.official=&quot;Islamische Republik Afghanistan&quot; translations.deu.common=&quot;Afghanistan&quot; translations.est.official=&quot;Afganistani Islamivabariik&quot; translations.est.common=&quot;Afganistan&quot; translations.fin.official=&quot;Afganistanin islamilainen tasavalta&quot; translations.fin.common=&quot;Afganistan&quot; translations.fra.official=&quot;République islamique d&#x27;Afghanistan&quot; translations.fra.common=&quot;Afghanistan&quot; translations.hrv.official=&quot;Islamska Republika Afganistan&quot; translations.hrv.common=&quot;Afganistan&quot; translations.hun.official=&quot;Afganisztáni Iszlám Köztársaság&quot; translations.hun.common=&quot;Afganisztán&quot; translations.ita.official=&quot;Repubblica islamica dell&#x27;Afghanistan&quot; translations.ita.common=&quot;Afghanistan&quot; translations.jpn.official=&quot;アフガニスタン・イスラム共和国&quot; translations.jpn.common=&quot;アフガニスタン&quot; translations.kor.official=&quot;아프가니스탄 이슬람 공화국&quot; translations.kor.common=&quot;아프가니스탄&quot; translations.nld.official=&quot;Islamitische Republiek Afghanistan&quot; translations.nld.common=&quot;Afghanistan&quot; translations.per.official=&quot;جمهوری اسلامی افغانستان&quot; translations.per.common=&quot;افغانستان&quot; translations.pol.official=&quot;Islamska Republika Afganistanu&quot; translations.pol.common=&quot;Afganistan&quot; translations.por.official=&quot;República Islâmica do Afeganistão&quot; translations.por.common=&quot;Afeganistão&quot; translations.rus.official=&quot;Исламская Республика Афганистан&quot; translations.rus.common=&quot;Афганистан&quot; translations.slk.official=&quot;Afgánsky islamský štát&quot; translations.slk.common=&quot;Afganistan&quot; translations.spa.official=&quot;República Islámica de Afganistán&quot; translations.spa.common=&quot;Afganistán&quot; translations.swe.official=&quot;Islamiska republiken Afghanistan&quot; translations.swe.common=&quot;Afghanistan&quot; translations.urd.official=&quot;اسلامی جمہوریہ افغانستان&quot; translations.urd.common=&quot;افغانستان&quot; translations.zho.official=&quot;阿富汗伊斯兰共和国&quot; translations.zho.common=&quot;阿富汗&quot; latlng=&quot;33,65&quot; landlocked=&quot;1&quot; borders=&quot;IRN,PAK,TKM,UZB,TJK,CHN&quot; area=&quot;652230&quot; flag=&quot;🇦🇫&quot; demonyms.eng.f=&quot;Afghan&quot; demonyms.eng.m=&quot;Afghan&quot; demonyms.fra.f=&quot;Afghane&quot; demonyms.fra.m=&quot;Afghan&quot; callingCodes=&quot;+93&quot;/&gt;
+  &lt;country name.common=&quot;Angola&quot; name.official=&quot;Republic of Angola&quot; name.native.por.official=&quot;República de Angola&quot; name.native.por.common=&quot;Angola&quot; tld=&quot;.ao&quot; cca2=&quot;AO&quot; ccn3=&quot;024&quot; cca3=&quot;AGO&quot; cioc=&quot;ANG&quot; independent=&quot;1&quot; status=&quot;officially-assigned&quot; unMember=&quot;1&quot; currencies.AOA.name=&quot;Angolan kwanza&quot; currencies.AOA.symbol=&quot;Kz&quot; idd.root=&quot;+2&quot; idd.suffixes=&quot;44&quot; capital=&quot;Luanda&quot; altSpellings=&quot;AO,República de Angola,ʁɛpublika de an&#x27;ɡɔla&quot; region=&quot;Africa&quot; subregion=&quot;Middle Africa&quot; languages.por=&quot;Portuguese&quot; translations.ces.official=&quot;Angolská republika&quot; translations.ces.common=&quot;Angola&quot; translations.deu.official=&quot;Republik Angola&quot; translations.deu.common=&quot;Angola&quot; translations.est.official=&quot;Angola Vabariik&quot; translations.est.common=&quot;Angola&quot; translations.fin.official=&quot;Angolan tasavalta&quot; translations.fin.common=&quot;Angola&quot; translations.fra.official=&quot;République d&#x27;Angola&quot; translations.fra.common=&quot;Angola&quot; translations.hrv.official=&quot;Republika Angola&quot; translations.hrv.common=&quot;Angola&quot; translations.hun.official=&quot;Angola&quot; translations.hun.common=&quot;Angola&quot; translations.ita.official=&quot;Repubblica dell&#x27;Angola&quot; translations.ita.common=&quot;Angola&quot; translations.jpn.official=&quot;アンゴラ共和国&quot; translations.jpn.common=&quot;アンゴラ&quot; translations.kor.official=&quot;앙골라 공화국&quot; translations.kor.common=&quot;앙골라&quot; translations.nld.official=&quot;Republiek Angola&quot; translations.nld.common=&quot;Angola&quot; translations.per.official=&quot;جمهوری آنگولا&quot; translations.per.common=&quot;آنگولا&quot; translations.pol.official=&quot;Republika Angoli&quot; translations.pol.common=&quot;Angola&quot; translations.por.official=&quot;República de Angola&quot; translations.por.common=&quot;Angola&quot; translations.rus.official=&quot;Республика Ангола&quot; translations.rus.common=&quot;Ангола&quot; translations.slk.official=&quot;Angolská republika&quot; translations.slk.common=&quot;Angola&quot; translations.spa.official=&quot;República de Angola&quot; translations.spa.common=&quot;Angola&quot; translations.swe.official=&quot;Republiken Angola&quot; translations.swe.common=&quot;Angola&quot; translations.urd.official=&quot;جمہوریہ انگولہ&quot; translations.urd.common=&quot;انگولہ&quot; translations.zho.official=&quot;安哥拉共和国&quot; translations.zho.common=&quot;安哥拉&quot; latlng=&quot;-12.5,18.5&quot; landlocked=&quot;0&quot; borders=&quot;COG,COD,ZMB,NAM&quot; area=&quot;1246700&quot; flag=&quot;🇦🇴&quot; demonyms.eng.f=&quot;Angolan&quot; demonyms.eng.m=&quot;Angolan&quot; demonyms.fra.f=&quot;Angolaise&quot; demonyms.fra.m=&quot;Angolais&quot; callingCodes=&quot;+244&quot;/&gt;
+⋮
+&lt;countries&gt;</pre></div>
+
+<div><h3>YAML</h3></div>
+
+<div><pre>- { name: { common: Aruba, official: Aruba, native: { nld: { official: Aruba, common: Aruba }, pap: { official: Aruba, common: Aruba } } }, tld: [.aw], cca2: AW, ccn3: &#x27;533&#x27;, cca3: ABW, cioc: ARU, independent: false, status: officially-assigned, unMember: false, currencies: { AWG: { name: &#x27;Aruban florin&#x27;, symbol: ƒ } }, idd: { root: &#x27;+2&#x27;, suffixes: [&#x27;97&#x27;] }, capital: [Oranjestad], altSpellings: [AW], region: Americas, subregion: Caribbean, languages: { nld: Dutch, pap: Papiamento }, translations: { ces: { official: Aruba, common: Aruba }, deu: { official: Aruba, common: Aruba }, est: { official: Aruba, common: Aruba }, fin: { official: Aruba, common: Aruba }, fra: { official: Aruba, common: Aruba }, hrv: { official: Aruba, common: Aruba }, hun: { official: Aruba, common: Aruba }, ita: { official: Aruba, common: Aruba }, jpn: { official: アルバ, common: アルバ }, kor: { official: 아루바, common: 아루바 }, nld: { official: Aruba, common: Aruba }, per: { official: آروبا, common: آروبا }, pol: { official: Aruba, common: Aruba }, por: { official: Aruba, common: Aruba }, rus: { official: Аруба, common: Аруба }, slk: { official: Aruba, common: Aruba }, spa: { official: Aruba, common: Aruba }, swe: { official: Aruba, common: Aruba }, urd: { official: اروبا, common: اروبا }, zho: { official: 阿鲁巴, common: 阿鲁巴 } }, latlng: [12.5, -69.96666666], landlocked: false, borders: {  }, area: 180, flag: 🇦🇼, demonyms: { eng: { f: Aruban, m: Aruban }, fra: { f: Arubaise, m: Arubais } }, callingCodes: [&#x27;+297&#x27;] }
+- { name: { common: Afghanistan, official: &#x27;Islamic Republic of Afghanistan&#x27;, native: { prs: { official: &#x27;جمهوری اسلامی افغانستان&#x27;, common: افغانستان }, pus: { official: &#x27;د افغانستان اسلامي جمهوریت&#x27;, common: افغانستان }, tuk: { official: &#x27;Owganystan Yslam Respublikasy&#x27;, common: Owganystan } } }, tld: [.af], cca2: AF, ccn3: &#x27;004&#x27;, cca3: AFG, cioc: AFG, independent: true, status: officially-assigned, unMember: true, currencies: { AFN: { name: &#x27;Afghan afghani&#x27;, symbol: ؋ } }, idd: { root: &#x27;+9&#x27;, suffixes: [&#x27;3&#x27;] }, capital: [Kabul], altSpellings: [AF, Afġānistān], region: Asia, subregion: &#x27;Southern Asia&#x27;, languages: { prs: Dari, pus: Pashto, tuk: Turkmen }, translations: { ces: { official: &#x27;Afghánská islámská republika&#x27;, common: Afghánistán }, deu: { official: &#x27;Islamische Republik Afghanistan&#x27;, common: Afghanistan }, est: { official: &#x27;Afganistani Islamivabariik&#x27;, common: Afganistan }, fin: { official: &#x27;Afganistanin islamilainen tasavalta&#x27;, common: Afganistan }, fra: { official: &quot;République islamique d&#x27;Afghanistan&quot;, common: Afghanistan }, hrv: { official: &#x27;Islamska Republika Afganistan&#x27;, common: Afganistan }, hun: { official: &#x27;Afganisztáni Iszlám Köztársaság&#x27;, common: Afganisztán }, ita: { official: &quot;Repubblica islamica dell&#x27;Afghanistan&quot;, common: Afghanistan }, jpn: { official: アフガニスタン・イスラム共和国, common: アフガニスタン }, kor: { official: &#x27;아프가니스탄 이슬람 공화국&#x27;, common: 아프가니스탄 }, nld: { official: &#x27;Islamitische Republiek Afghanistan&#x27;, common: Afghanistan }, per: { official: &#x27;جمهوری اسلامی افغانستان&#x27;, common: افغانستان }, pol: { official: &#x27;Islamska Republika Afganistanu&#x27;, common: Afganistan }, por: { official: &#x27;República Islâmica do Afeganistão&#x27;, common: Afeganistão }, rus: { official: &#x27;Исламская Республика Афганистан&#x27;, common: Афганистан }, slk: { official: &#x27;Afgánsky islamský štát&#x27;, common: Afganistan }, spa: { official: &#x27;República Islámica de Afganistán&#x27;, common: Afganistán }, swe: { official: &#x27;Islamiska republiken Afghanistan&#x27;, common: Afghanistan }, urd: { official: &#x27;اسلامی جمہوریہ افغانستان&#x27;, common: افغانستان }, zho: { official: 阿富汗伊斯兰共和国, common: 阿富汗 } }, latlng: [33, 65], landlocked: true, borders: [IRN, PAK, TKM, UZB, TJK, CHN], area: 652230, flag: 🇦🇫, demonyms: { eng: { f: Afghan, m: Afghan }, fra: { f: Afghane, m: Afghan } }, callingCodes: [&#x27;+93&#x27;] }
+- { name: { common: Angola, official: &#x27;Republic of Angola&#x27;, native: { por: { official: &#x27;República de Angola&#x27;, common: Angola } } }, tld: [.ao], cca2: AO, ccn3: &#x27;024&#x27;, cca3: AGO, cioc: ANG, independent: true, status: officially-assigned, unMember: true, currencies: { AOA: { name: &#x27;Angolan kwanza&#x27;, symbol: Kz } }, idd: { root: &#x27;+2&#x27;, suffixes: [&#x27;44&#x27;] }, capital: [Luanda], altSpellings: [AO, &#x27;República de Angola&#x27;, &quot;ʁɛpublika de an&#x27;ɡɔla&quot;], region: Africa, subregion: &#x27;Middle Africa&#x27;, languages: { por: Portuguese }, translations: { ces: { official: &#x27;Angolská republika&#x27;, common: Angola }, deu: { official: &#x27;Republik Angola&#x27;, common: Angola }, est: { official: &#x27;Angola Vabariik&#x27;, common: Angola }, fin: { official: &#x27;Angolan tasavalta&#x27;, common: Angola }, fra: { official: &quot;République d&#x27;Angola&quot;, common: Angola }, hrv: { official: &#x27;Republika Angola&#x27;, common: Angola }, hun: { official: Angola, common: Angola }, ita: { official: &quot;Repubblica dell&#x27;Angola&quot;, common: Angola }, jpn: { official: アンゴラ共和国, common: アンゴラ }, kor: { official: &#x27;앙골라 공화국&#x27;, common: 앙골라 }, nld: { official: &#x27;Republiek Angola&#x27;, common: Angola }, per: { official: &#x27;جمهوری آنگولا&#x27;, common: آنگولا }, pol: { official: &#x27;Republika Angoli&#x27;, common: Angola }, por: { official: &#x27;República de Angola&#x27;, common: Angola }, rus: { official: &#x27;Республика Ангола&#x27;, common: Ангола }, slk: { official: &#x27;Angolská republika&#x27;, common: Angola }, spa: { official: &#x27;República de Angola&#x27;, common: Angola }, swe: { official: &#x27;Republiken Angola&#x27;, common: Angola }, urd: { official: &#x27;جمہوریہ انگولہ&#x27;, common: انگولہ }, zho: { official: 安哥拉共和国, common: 安哥拉 } }, latlng: [-12.5, 18.5], landlocked: false, borders: [COG, COD, ZMB, NAM], area: 1246700, flag: 🇦🇴, demonyms: { eng: { f: Angolan, m: Angolan }, fra: { f: Angolaise, m: Angolais } }, callingCodes: [&#x27;+244&#x27;] }</pre></div>
+
+<div><h2>Customising the output</h2></div>
+
+<p>The data files provided in the <code>dist</code>
+ directory include all available fields, but is also possible to build a custom version of the data with certain fields excluded.</p>
+
+<p>To do this, you will first need a working PHP installation, composer and a local copy of this repository. Once you have these, open a terminal in your local version of this project&#x27;s root directory and run this command to install the necessary dependencies:</p>
+
+<div><pre>composer install</pre></div>
+
+<p>After this finishes, run the following command (here we will exclude the <code>tld</code>
+ field from the output, but you can exclude any field you want):</p>
+
+<div><pre>php countries.php convert --exclude-field=tld</pre></div>
+
+<p>You can also exclude multiple fields:</p>
+
+<div><pre>php countries.php convert --exclude-field=tld --exclude-field=cca2
+
+# Or using the shorter `-x` syntax:
+php countries.php convert -x tld -x cca2</pre></div>
+
+<p>If you prefer to include only some fields (this can not be combined with <code>--exclude-field</code>
+):</p>
+
+<div><pre>php countries.php convert --include-field=name --include-field=area
+
+# or using the shorter `-i` syntax:
+php countries.php convert -i name -i area</pre></div>
+
+<p>The generated files are put into the <code>dist</code>
+ directory, but you can change this to another existing directory:</p>
+
+<div><pre>mkdir foobar
+php countries.php convert --output-dir=foobar</pre></div>
+
+<p>You can also choose to only generate some of the output formats:</p>
+
+<div><pre>mkdir foobar
+php countries.php convert --format=json_unescaped --format=csv
+
+# or using the shorter `-f` syntax:
+php countries.php convert -f json_unescaped -f csv</pre></div>
+
+<div><h2>Showcase</h2></div>
+
+<p>Projects using this dataset:</p>
+
+<ul><li>REST Countries</li>
+
+<li>International Telephone Input</li>
+
+<li>Telephone JS</li>
+
+<li>Countries of the World</li>
+
+<li>Country Prefix Codes For Go</li>
+
+<li>Country Info Mapper in Go</li>
+
+<li>Visa requirements in JSON</li>
+
+<li>Country picker modal for React Native</li>
+
+<li>Agnostic Virtual Assistant</li></ul>
+
+<div><h2>How to contribute?</h2></div>
+
+<p>Please refer to CONTRIBUTING.</p>
+
+<div><h2>To do</h2></div>
+
+<ul><li>add the type of the country (country, sovereign state, public body, territory, etc.)</li>
+
+<li>pull in data automatically from CLDR at build time (idea from @Munter, see #108)</li></ul>
+
+<div><h2>Sources</h2></div>
+
+<p>https://www.currency-iso.org/ for currency codes.</p>
+
+<p>Region and subregion are taken from https://github.com/hexorx/countries.</p>
+
+<p>GeoJSON outlines come from http://thematicmapping.org/downloads/world_borders.php.</p>
+
+<p>The rest comes from Wikipedia.</p>
+
+<div><h2>Credits</h2></div>
+
+<p>Thanks to:</p>
+
+<ul><li>@Glazz for his help with country calling codes</li>
+
+<li>@hexorx for his work (https://github.com/hexorx/countries)</li>
+
+<li>@frederik-jacques for the capital cities</li>
+
+<li>@fayer for the population, geolocation, demonym and area data</li>
+
+<li>@ancosen for his help with the borders data</li>
+
+<li>@yackermann for country names and various fixes</li>
+
+<li>all the contributors: https://github.com/mledoze/countries/graphs/contributors</li></ul>
+
+<div><h2>License</h2></div>
+
+<p>See LICENSE.</p>
+
+<p>Flags are not licensed under the ODbL license; see https://en.wikipedia.org/wiki/Wikipedia:Copyright_on_emblems for more information.</p></div>
+
+</main>
+</body>
+</html>
