@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """world-atlas.html の MASCOT_EXTRA が参照する外部マスコット画像を
-ダウンロードし、ローカル参照 (mascots/<名前>.<ext>) に書き換える。標準ライブラリのみ。
+ダウンロードし、ローカル参照 (images/<名前>.<ext>) に書き換える。標準ライブラリのみ。
 
 使い方 (WSL):
   cd /mnt/c/Users/cndon/Downloads/TODOS/global-word/docs/html
@@ -93,16 +93,16 @@ def main():
                     print(f"  {k} [{f}] {v[f]}")
         return 0
 
-    out_dir = base / "mascots"
+    out_dir = base / "images"
     out_dir.mkdir(exist_ok=True)
     ok, failed = [], []
 
     for key, v in obj.items():
         if not (is_remote(v.get("src")) or is_remote(v.get("fallback"))):
             continue
-        stem = (v.get("local") or "mascots/" + key.replace("/", "_")).strip("/")
-        if not stem.startswith("mascots/"):
-            stem = "mascots/" + stem
+        stem = (v.get("local") or "images/" + key.replace("/", "_")).strip("/")
+        if not stem.startswith("images/"):
+            stem = "images/" + stem
         done = None
         errs = []
         for field in ("src", "fallback"):
