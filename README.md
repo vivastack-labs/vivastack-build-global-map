@@ -16,7 +16,9 @@ npm exec -- cf deploy ./docs/html --dry-run --no-provision
 
 初回公開前に、Cloudflare の Workers & Pages で `vivastack-dev` の `global-map` Worker を確認します。現行のバージョン ID を控え、`workers.dev` ルート、バインディング、Git 連携などの既存配信設定を確認します。
 
-GitHub の **Settings → Environments** で `production` を作り、デプロイ可能なブランチを `main` に限定します。Environment の Secrets に `CLOUDFLARE_ACCOUNT_ID` と `CLOUDFLARE_API_TOKEN` を登録します。トークンには対象アカウントだけを指定し、Workers Scripts の Edit 権限を付けます。
+GitHub の **Settings → Environments** で `production` を作り、デプロイ可能なブランチを `main` に限定します。Environment の Secrets に `CLOUDFLARE_ACCOUNT_ID` と `CLOUDFLARE_API_TOKEN` を登録します。Cloudflare のトークンは既存の `global-map` Worker に限定し、Worker 単位の `Editor` 権限を付けます。従来のリポジトリレベルのトークンから移行する場合は、新しいトークンでデプロイが成功した後にリポジトリ側のシークレットを削除し、旧トークンを Cloudflare で失効させます。
+
+GitHub の **Settings → Rules → Rulesets** で `main` に有効なルールセットを適用します。PR 経由の変更と GitHub Actions の `check` の成功を必須にし、force push とブランチの削除を禁止します。レビュー担当を確保できる場合は、PR の承認も必須にします。**Settings → Advanced Security** で Secret scanning と Push protection を有効にします。
 
 `Deploy World Atlas` の `check`、`deploy`、`smoke` を Actions で確認します。`deploy` が成功して `smoke` が失敗した場合は、失敗したパスと応答を確認します。直前の配信に戻す必要がある場合は、Cloudflare の **Workers & Pages → global-map → Deployments** から控えたバージョンに戻し、そのバージョンのファイルを使って疎通を確認します。
 
