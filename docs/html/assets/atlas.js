@@ -383,6 +383,14 @@ function mascotImgFail(img) {
   img.outerHTML = mascotPlaceholder(img.classList.contains('large'), img.alt + 'の画像を読み込めません');
 }
 
+// Image errors do not bubble. Capture them for dynamically rendered mascots.
+document.addEventListener('error', event => {
+  const image = event.target;
+  if (image instanceof HTMLImageElement && image.matches('.mascot[data-sources]')) {
+    mascotImgFail(image);
+  }
+}, true);
+
 // TOP 5 is an editorial selection for the prototype, not an official ranking.
 const ATLAS_CULTURE={},MASCOTS={
 'JPN/熊本県':{name:'くまモン',src:'mascots/熊本県.svg',source:'sources/kumamon-land.html',credit:'熊本県 PRキャラクター'},
@@ -452,7 +460,7 @@ function mascotMarkup(key, large = false) {
   const candidates = [mascot.src, mascot.fallback].filter(Boolean);
   if (!candidates.length) return mascotPlaceholder(large, mascot.name + 'の画像は未配置です');
   const alt = mascot.label || mascot.name;
-  const sources = ' data-sources="' + esc(JSON.stringify(candidates)) + '" data-source-index="0" onerror="mascotImgFail(this)"';
+  const sources = ' data-sources="' + esc(JSON.stringify(candidates)) + '" data-source-index="0"';
   return '<img class="mascot' + (large ? ' large' : '') + '" src="' + esc(candidates[0]) + '"' + sources +
     ' alt="' + esc(alt) + '" title="' + esc(mascot.name + ' ・ ' + mascot.credit) +
     '" loading="lazy" decoding="async" referrerpolicy="no-referrer">';
