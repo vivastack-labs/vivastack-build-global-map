@@ -1,0 +1,43 @@
+---
+name: Delete merged PR branch
+
+"on":
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+permissions: {}
+
+jobs:
+  delete-branch:
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.id == github.event.repository.id &&
+      github.event.pull_request.head.ref != github.event.repository.default_branch &&
+      github.event.pull_request.head.ref != github.event.pull_request.base.ref
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Delete branch at its merged SHA
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GIT_TERMINAL_PROMPT: '0'
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          ref="refs/heads/${HEAD_BRANCH:?Missing PR head branch}"
+          remote="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git check-ref-format "$ref"
+          git_dir=$(mktemp -d)
+          git init --bare --quiet "$git_dir"
+          git -C "$git_dir" config --add credential.helper ''
+          git -C "$git_dir" config --add credential.helper '!gh auth git-credential'
+          current_ref=$(git -C "$git_dir" ls-remote --refs "$remote" "$ref")
+          if [[ "$current_ref" != "${HEAD_SHA:?Missing PR head SHA}"$'\t'"$ref" ]]; then
+            echo 'The PR branch is absent or points to a different commit. Skipping deletion.'
+            exit 0
+          fi
+          git -C "$git_dir" push --force-with-lease="$ref:$HEAD_SHA" "$remote" ":$ref"
