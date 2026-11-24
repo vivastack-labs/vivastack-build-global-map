@@ -63,6 +63,7 @@ dmypy.json
 
 # artifacts
 artifacts/
+/.cloudflare/
 
 # Rust
 target/
