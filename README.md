@@ -2,6 +2,28 @@
 
 a framework seed for developing with claudecode
 
+## World Atlas の公開
+
+GitHub Actions は `main` 宛ての PR で配信設定を検証し、`main` への push 後に `docs/html/` をそのまま Cloudflare Workers に公開します。対象は [global-map.vivastack-dev.workers.dev](https://global-map.vivastack-dev.workers.dev/) です。`docs/html/_redirects` が `/` に地図を配信します。
+
+Node.js 24.22.0 以上の 24 系で、次のコマンドを実行すると認証なしで配信設定を検証できます。
+
+```bash
+npm ci
+bash scripts/smoke-site.sh --check-files
+npm exec -- cf deploy ./docs/html --dry-run --no-provision
+```
+
+初回公開前に、Cloudflare の Workers & Pages で `vivastack-dev` の `global-map` Worker を確認します。現行のバージョン ID を控え、`workers.dev` ルート、バインディング、Git 連携などの既存配信設定を確認します。
+
+GitHub の **Settings → Environments** で `production` を作り、デプロイ可能なブランチを `main` に限定します。Environment の Secrets に `CLOUDFLARE_ACCOUNT_ID` と `CLOUDFLARE_API_TOKEN` を登録します。トークンには対象アカウントだけを指定し、Workers Scripts の Edit 権限を付けます。
+
+`Deploy World Atlas` の `check`、`deploy`、`smoke` を Actions で確認します。`deploy` が成功して `smoke` が失敗した場合は、失敗したパスと応答を確認します。直前の配信に戻す必要がある場合は、Cloudflare の **Workers & Pages → global-map → Deployments** から控えたバージョンに戻し、そのバージョンのファイルを使って疎通を確認します。
+
+```bash
+npm run smoke -- https://global-map.vivastack-dev.workers.dev/
+```
+
 ---
 ## Dev Steps
 
@@ -108,7 +130,6 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "cl
 tmux source-file ~/.tmux.conf
 ```
 
-
 ### 8. Install the `markdownlint-cli2` for markdown linting
 
 ```bash
@@ -142,14 +163,12 @@ shellcheck --help
 shellcheck somefile.sh
 ```
 
-
 ---
 
 ## Cladue plugin offical (recommended)
 
 - claude-md-mangement
 - skill-create
-
 
 ## Use Local Hooks
 
