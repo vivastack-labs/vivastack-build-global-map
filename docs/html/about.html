@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf6f9">
+  <title>このサイトについて | WORLD ATLAS</title>
+  <link rel="stylesheet" href="assets/atlas.css">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+</head>
+<body>
+  <header>
+    <a class="brand" href="world-atlas.html"><span class="brand-icon" aria-hidden="true">◎</span> WORLD ATLAS <small>せかいをめぐる地図</small></a>
+  </header>
+  <main class="info-page">
+    <a class="info-back" href="world-atlas.html">地図に戻る</a>
+    <article class="info-card" aria-labelledby="page-title">
+      <h1 id="page-title">このサイトについて</h1>
+      <p>「せかいをめぐる地図」は、地球を回しながら世界の国や街を探せる地理学習サイトです。エリアから国・地域、都道府県や州などの行政区、主要都市へとたどれます。大陸や国・地域の面積、人口も比べられます。</p>
+
+      <section aria-labelledby="map-data">
+        <h2 id="map-data">地図・統計データの出典</h2>
+        <ul>
+          <li>地図の形と主要都市の位置は <a href="https://www.naturalearthdata.com/">Natural Earth</a> のデータを使っています。</li>
+          <li>国・地域の面積には <a href="https://github.com/mledoze/countries">mledoze/countries</a> の総面積を使っています。</li>
+          <li>国・地域の人口は <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">世界銀行の総人口データ（SP.POP.TOTL）</a> を使っています。世界銀行に値がない一部の国・地域では、Natural Earth の推計値を使用しています。</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="boundaries">
+        <h2 id="boundaries">地図の境界と表示範囲</h2>
+        <p>この地図では境界を概略で示しており、一部の小さな国・地域は省略しています。街のピンは主要都市の代表地点を示します。境界線・地名・エリアの区分は、国や地域の地位、主権についての見解を示すものではありません。</p>
+      </section>
+    </article>
+  </main>
+  <footer class="atlas-footer">
+    <span>WORLD ATLAS <span class="footer-dot">·</span> 知らない世界に、会いにいこう。</span>
+    <nav class="footer-links" aria-label="サイト情報">
+      <a href="about.html" aria-current="page">このサイトについて</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </nav>
+  </footer>
+</body>
+</html>
