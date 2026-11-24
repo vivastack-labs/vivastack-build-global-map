@@ -10,7 +10,7 @@
 | --- | --- |
 | ルートの配信 | `docs/html/_redirects` にルートの内部書き換えを追加。元の `.html` URL も利用できる |
 | Workers の設定 | `cloudflare.config.ts`、`package.json`、`package-lock.json`、`.gitignore` を更新。既存 Worker で確認した互換日 `2026-11-22` を採用し、`cf@1.0.0-rc.4` を固定した |
-| PR 検証 | `.github/workflows/ci.yml` がページの存在、ルート設定、構文、Cloudflare dry-run を確認する。同じワークフローを本番側から呼び出す |
+| PR 検証 | `.github/workflows/ci.yml` が必須のページとアセットの存在、ルート設定、構文、Cloudflare dry-run を確認する。必須ファイルは公開後の疎通確認と共通化し、同じワークフローを本番側から呼び出す |
 | 本番ワークフロー | `.github/workflows/deploy.yml` が `main` への push で起動する。検証が成功し、対象 SHA がまだ `main` の先端なら公開する。公開後は `scripts/smoke-site.sh` がステータスとファイル内容を照合する |
 | 本番の状態確認 | 読み取り API で `workers.dev` 有効、プレビュー無効、バインディングなし、Workers Builds トリガー 0 件を確認した。確認時点のデプロイ元は Dashboard、配信バージョンは `f93af837-40a2-411b-a5da-995204d227fe` |
 | 運用手順 | `README.md` に初回の Environment 設定、dry-run、公開後の疎通確認と復旧方法を追記した |
@@ -21,6 +21,7 @@
 - `actionlint .github/workflows/ci.yml .github/workflows/deploy.yml`、`yamllint .github/workflows`、`node --check docs/html/assets/atlas.js`、`bash -n scripts/smoke-site.sh`、`shellcheck scripts/smoke-site.sh`、対象 Markdown の `markdownlint-cli2`、`git diff --check` が成功した。
 - Cloudflare CLI の出力を Miniflare で配信し、その URL に対して `npm run smoke -- <URL>` が成功した。地図・案内ページ・代表アセット 12 パスでステータス 200 とファイル内容の一致を確認し、`/_redirects` と未定義パスは 404 を確認した。別のローカルサーバーで古い本文を HTTP 200 で返すと、疎通確認が失敗することも確認した。
 - Chromium で地図を開き、日本の詳細 JSON が読み込まれることと、フッターから案内ページ 2 つを開いて地図に戻れることを確認した。
+- `bash scripts/smoke-site.sh --check-files` は現行ファイルで成功した。一時コピーの `assets/atlas.css` を削除した場合と空にした場合は、どちらも失敗した。
 - 既存の Claude フックテストは 24 ファイル、Codex フックと知識ライブラリのテストは計 28 件が成功した。書き込み可能な一時ホームで実行した。
 
 ## 受け入れ条件
@@ -34,4 +35,4 @@
 
 ## 残作業
 
-GitHub API で `production` Environment が未作成であることを確認した。初回公開前に `main` 用の `production` Environment と Cloudflare の Secrets 2 件が必要。GitHub 上の PR と初回デプロイの受け入れ確認が残るため、計画は `docs/PRPs/plans/` に置いている。`sources/` の参照先ファイルの復元は別途扱う。
+GitHub の `production` Environment を作成し、デプロイ元を `main` に限定した。`CLOUDFLARE_ACCOUNT_ID` は登録済み。Cloudflare の接続には `Account API Tokens Write` 権限がなく、`CLOUDFLARE_API_TOKEN` の発行と登録が残っている。初回デプロイの受け入れ確認が残るため、計画は `docs/PRPs/plans/` に置いている。`sources/` の参照先ファイルの復元は別途扱う。

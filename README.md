@@ -10,6 +10,7 @@ Node.js 24.22.0 以上の 24 系で、次のコマンドを実行すると認証
 
 ```bash
 npm ci
+bash scripts/smoke-site.sh --check-files
 npm exec -- cf deploy ./docs/html --dry-run --no-provision
 ```
 

@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ $# -ne 1 || ! "$1" =~ ^https?://[^/]+/?$ ]]; then
-  echo "Usage: bash scripts/smoke-site.sh <site-origin>" >&2
+if [[ $# -ne 1 || ( "$1" != --check-files && ! "$1" =~ ^https?://[^/]+/?$ ) ]]; then
+  echo "Usage: bash scripts/smoke-site.sh --check-files | <site-origin>" >&2
   exit 2
 fi
 
 base_url=${1%/}
 asset_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../docs/html" && pwd)
-response_file=$(mktemp)
-trap 'rm -f -- "$response_file"' EXIT
+if [[ "$1" != --check-files ]]; then
+  response_file=$(mktemp)
+  trap 'rm -f -- "$response_file"' EXIT
+fi
 
 check_response() {
   local path=$1 expected_status=$2 expected_file=${3:-}
@@ -35,11 +37,28 @@ check_response() {
   return 1
 }
 
-check_response / 200 world-atlas.html
+check_asset() {
+  local asset=$1 path=${2:-/$1}
+
+  if [[ "$base_url" == --check-files ]]; then
+    if [[ ! -s "$asset_dir/$asset" ]]; then
+      printf 'Required site asset is missing or empty: %s\n' "$asset" >&2
+      return 1
+    fi
+    return
+  fi
+
+  check_response "$path" 200 "$asset"
+}
+
 for asset in world-atlas.html about.html privacy.html assets/atlas.css assets/atlas.js \
   assets/favicon.png assets/vendor/d3.min.js assets/world.json assets/admin/JPN.json assets/flags/JP.svg; do
-  check_response "/$asset" 200 "$asset"
+  check_asset "$asset"
 done
-check_response '/mascots/%E5%BE%B3%E5%B3%B6%E7%9C%8C.png' 200 'mascots/徳島県.png'
-check_response /_redirects 404
-check_response /__global_map_missing_check__ 404
+check_asset 'mascots/徳島県.png' '/mascots/%E5%BE%B3%E5%B3%B6%E7%9C%8C.png'
+
+if [[ "$base_url" != --check-files ]]; then
+  check_asset world-atlas.html /
+  check_response /_redirects 404
+  check_response /__global_map_missing_check__ 404
+fi

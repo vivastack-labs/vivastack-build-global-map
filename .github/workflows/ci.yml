@@ -30,10 +30,8 @@ jobs:
         run: npm ci
       - name: Validate site
         run: |
-          test -s docs/html/world-atlas.html
-          test -s docs/html/about.html
-          test -s docs/html/privacy.html
           grep -qxF '/ /world-atlas.html 200' docs/html/_redirects
           node --check docs/html/assets/atlas.js
           bash -n scripts/smoke-site.sh
+          bash scripts/smoke-site.sh --check-files
           npm exec -- cf deploy ./docs/html --dry-run --no-provision
